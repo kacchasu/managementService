@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Информация о Сотруднике</title>
+  <style>
+    body {
+      background-color: #F9F7F7; /* Цвет фона */
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    h1 {
+      color: #FF6692; /* Цвет заголовка */
+    }
+    div {
+      background-color: #FFFFFF; /* Цвет блока с информацией */
+      padding: 20px;
+      border-radius: 10px;
+      margin: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+    button {
+      background-color: #FF6692; /* Цвет кнопок */
+      color: #FFFFFF;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+<h1>Информация о Сотруднике</h1>
+<div>
+  <p>Имя: <span th:text="${employee.username}"></span></p>
+  <p>Должность: <span th:text="${employee.position}"></span></p>
+  <p>Менеджер: <span th:text="${employee.manager != null ? employee.manager.username : 'Нет менеджера'}"></span></p>
+</div>
+<form action="/login" method="post">
+  <button type="submit">Выйти</button>
+</form>
+<form th:action="@{/employees/leave}" method="post">
+  <input type="hidden" name="employeeId" th:value="${employee.id}" />
+  <button type="submit">Уволиться</button>
+</form>
+</body>
+</html>

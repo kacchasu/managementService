@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Дашборд Менеджера</title>
+  <style>
+    body {
+      background-color: #F9F7F7;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    h1 {
+      color: #FF6692;
+    }
+    a {
+      color: #FF6692;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    div {
+      background-color: #FFFFFF;
+      padding: 20px;
+      border-radius: 10px;
+      margin: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+    button {
+      background-color: #FF6692;
+      color: #FFFFFF;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+<h1>Мои Работники</h1>
+<a href="/managers/hire">Нанять Работника</a>
+<div th:each="employee : ${myEmployees}">
+  <p th:text="${employee.username}">Имя работника</p>
+  <p th:text="${employee.position}">Должность</p>
+  <form th:action="@{/managers/employee/update}" method="post">
+    <input type="hidden" name="employeeId" th:value="${employee.id}" />
+    <input type="text" name="newPosition" placeholder="Новая должность"/>
+    <button type="submit">Изменить должность</button>
+  </form>
+  <form th:action="@{/managers/employee/fire}" method="post">
+    <input type="hidden" name="employeeId" th:value="${employee.id}" />
+    <button type="submit">Уволить</button>
+  </form>
+</div>
+<form th:action="@{/logout}" method="post">
+  <button type="submit">Выйти из аккаунта</button>
+</form>
+</body>
+</html>

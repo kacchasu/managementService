@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Нанять Работников</title>
+  <style>
+    body {
+      background-color: #F9F7F7;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    h1 {
+      color: #FF6692;
+    }
+    div {
+      background-color: #FFFFFF;
+      padding: 20px;
+      border-radius: 10px;
+      margin: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+    button {
+      background-color: #FF6692;
+      color: #FFFFFF;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    a {
+      color: #FF6692;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+<h1>Свободные Работники</h1>
+<div th:each="employee : ${freeEmployees}">
+  <p th:text="${employee.username}">Имя работника</p>
+  <form th:action="@{/managers/hire}" method="post">
+    <input type="hidden" name="employeeId" th:value="${employee.id}" />
+    <button type="submit">Нанять</button>
+  </form>
+</div>
+<a href="/managers">Назад к дашборду</a>
+</body>
+</html>
