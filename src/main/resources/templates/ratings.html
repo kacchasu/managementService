@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Оценки</title>
+  <style>
+    body {
+      background-color: #F9F7F7;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    h1 {
+      color: #FF6692;
+    }
+
+    div {
+      background-color: #FFFFFF;
+      padding: 20px;
+      border-radius: 10px;
+      margin: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+<body>
+<h1>Ваши Оценки</h1>
+<div th:each="rating : ${ratings}">
+  <p>Оценка: <span th:text="${rating.score}"></span></p>
+  <p>Оценено: <span th:text="${rating.ratedUser.username}"></span></p>
+</div>
+</body>
+</html>

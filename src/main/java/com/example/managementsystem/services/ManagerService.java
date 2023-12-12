@@ -33,4 +33,5 @@ public class ManagerService {
             manager.setAverageRating(averageScore);
             managerRepository.save(manager);
         }
-    }}
+    }
+}
