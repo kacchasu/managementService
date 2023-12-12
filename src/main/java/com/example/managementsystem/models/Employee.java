@@ -1,7 +1,12 @@
 package com.example.managementsystem.models;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.Data;
+
+import java.util.List;
 
 @Entity
 @Data
@@ -13,7 +18,13 @@ public class Employee extends User {
     @JoinColumn(name = "manager_id")
     private Manager manager;
 
-    public Employee() {}
+    @OneToMany(mappedBy = "ratedUser")
+    private List<Rating> receivedRatings; // Оценки, полученные работником
+
+    private Double averageRating; // Средняя оценка работника
+
+    public Employee() {
+    }
 
     public Employee(String username, String password) {
         super(username, password);

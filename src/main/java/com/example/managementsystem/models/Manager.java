@@ -1,10 +1,10 @@
 package com.example.managementsystem.models;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
 import lombok.Data;
 
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Data
@@ -13,11 +13,16 @@ public class Manager extends User {
     @OneToMany(mappedBy = "manager")
     private List<Employee> employees;
 
-    public Manager() {}
+    @OneToMany(mappedBy = "ratedByUser")
+    private List<Rating> givenRatings; // Оценки, выставленные менеджером
+
+    private Double averageRating; // Средняя оценка менеджера
+
+    public Manager() {
+    }
 
     public Manager(String username, String password) {
         super(username, password);
     }
 
 }
-

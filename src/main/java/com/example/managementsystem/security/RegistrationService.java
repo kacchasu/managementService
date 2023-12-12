@@ -6,7 +6,6 @@ import com.example.managementsystem.models.UserDto;
 import com.example.managementsystem.repositories.EmployeeRepository;
 import com.example.managementsystem.repositories.ManagerRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
