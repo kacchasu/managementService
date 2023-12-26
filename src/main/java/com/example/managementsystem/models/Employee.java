@@ -1,9 +1,6 @@
 package com.example.managementsystem.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.List;
@@ -18,7 +15,7 @@ public class Employee extends User {
     @JoinColumn(name = "manager_id")
     private Manager manager;
 
-    @OneToMany(mappedBy = "ratedUser")
+    @OneToMany(mappedBy = "ratedUser", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Rating> receivedRatings; // Оценки, полученные работником
 
     private Double averageRating; // Средняя оценка работника
@@ -29,6 +26,7 @@ public class Employee extends User {
     public Employee(String username, String password) {
         super(username, password);
     }
+
 }
 
 

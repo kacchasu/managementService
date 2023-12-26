@@ -22,7 +22,11 @@ public class EmployeeService {
     }
 
     public void deleteById(Long employeeId) {
-        employeeRepository.deleteById(employeeId);
+        Employee employee = employeeRepository.findById(employeeId).orElseThrow();
+        ratingRepository.deleteAll(ratingRepository.findByRatedByUser(employee));
+        ratingRepository.deleteAll(ratingRepository.findByRatedUser(employee));
+
+        employeeRepository.delete(employee);
     }
 
     public List<Employee> findFreeEmployees() {
